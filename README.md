@@ -1,4 +1,4 @@
-# Lisk Blockchain Explorer
+# SHIFT Blockchain Explorer
 
 Lisk blockchain explorer version 0.3. Works with Lisk wallet API. Uses Redis for caching data and Freegeoip for IP geo-location.
 
@@ -49,7 +49,7 @@ Example:
         },
         "lisk" : {
             "host" : "127.0.0.1",
-            "port" : 8000
+            "port" : 9305
         },
         "freegeoip" : {
             "host" : "127.0.0.1",
@@ -157,6 +157,7 @@ TOP=true node app.js
 
 The MIT License (MIT)
 
+Copyright (c) 2016 4miners.net<br>
 Copyright (c) 2016 Lisk  
 Copyright (c) 2015 Crypti
 
