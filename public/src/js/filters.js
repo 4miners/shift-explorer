@@ -89,13 +89,13 @@ angular.module('lisk_explorer')
           if (isNaN(votes)) {
               return 0;
           } else {
-              return ((parseInt(votes) / 10000000000000000) * 100).toFixed(2);
+              return ((parseInt(votes) / 1009000000000000) * 100).toFixed(2);
           }
       };
   })
   .filter('supply', function (liskFilter) {
       return function (amount) {
-          return ((liskFilter(amount) / 100000000) * 100).toFixed(2);
+          return ((liskFilter(amount) / 100900000) * 100).toFixed(2);
       };
   })
   .filter('txSender', function () {
