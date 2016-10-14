@@ -25,10 +25,10 @@ angular.module('lisk_explorer.tools').service('forgingStatus',
           } else if (statusAge > 9) {
               // Stale Status
               status.code = 3;
-          } else if (blockAge <= 34) {
+          } else if (blockAge <= 85) {
               // Forging
               status.code = 0;
-          } else if (blockAge <= 68) {
+          } else if (blockAge <= 170) {
               // Missed Cycles
               status.code = 1;
           } else {
