@@ -47,7 +47,7 @@ module.exports = function (grunt) {
         async.series([
             function (callback) {
 //                 var poloniex = new candles.poloniex(client);
-                var bittrex = new bittrex.poloniex(client);
+                var bittrex = new candles.bittrex(client);
 
 //                 poloniex.updateCandles(function (err, res) {
 //                     if (err) {
