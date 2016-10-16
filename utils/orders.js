@@ -13,7 +13,7 @@ module.exports = function (config, client) {
         }
         async.series([
             function (callback) {
-                poloniex.updateOrders(function (err, res) {
+                bittrex.updateOrders(function (err, res) {
                     if (err) {
                         callback(err);
                     } else {
@@ -41,6 +41,7 @@ module.exports = function (config, client) {
     // Private
 
     var poloniex = new orders.poloniex(client);
+    var bittrex = new orders.bittrex(client);
 
     var running = false;
 };
