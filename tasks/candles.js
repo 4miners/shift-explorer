@@ -12,8 +12,17 @@ module.exports = function (grunt) {
         async.series([
             function (callback) {
                 var poloniex = new candles.poloniex(client);
+                var bittrex = new candles.bittrex(client);
 
                 poloniex.buildCandles(function (err, res) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, res);
+                    }
+                });
+
+                bittrex.buildCandles(function (err, res) {
                     if (err) {
                         callback(err);
                     } else {
@@ -38,8 +47,17 @@ module.exports = function (grunt) {
         async.series([
             function (callback) {
                 var poloniex = new candles.poloniex(client);
+                var bittrex = new bittrex.poloniex(client);
 
                 poloniex.updateCandles(function (err, res) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, res);
+                    }
+                });
+
+                bittrex.updateCandles(function (err, res) {
                     if (err) {
                         callback(err);
                     } else {
