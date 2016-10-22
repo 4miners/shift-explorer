@@ -47,6 +47,10 @@
                 <td><strong>USD equivalent</strong></td>
                 <td class="ellipsis text-right">{{address.usd | fiat}} <span class="text-muted">USD</span></td>
               </tr>
+              <tr>
+                <td><strong>Transactions</strong></td>
+                <td class="ellipsis text-right"><i class="fa fa-arrow-down text-muted"></i> {{address.incoming_cnt}} / <i class="fa fa-arrow-up text-muted"></i> {{address.outgoing_cnt}}</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -79,9 +83,45 @@
                   <td><strong>Forged</strong></td>
                   <td class="ellipsis text-right">{{address.delegate.forged|| 0 | lisk}} <span class="text-muted">SHIFT</span></td>
                 </tr>
+                <tr>
+                  <td><strong>Blocks</strong></td>
+                  <td class="ellipsis text-right">{{address.delegate.producedblocks}} <span class="text-muted">({{address.delegate.missedblocks}} missed)</span></td>
+                </tr>
               </tbody>
             </table>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="delegate" data-ng-if="address.votes">
+      <h2>Votes <small>{{address.votes.length}}</small></h2>
+      <div class="row">
+        <div class="col-md-12">
+            <span data-ng-repeat='v in address.votes'>
+              <span data-ng-if="!$last">
+                <a href="/address/{{v.address}}">{{v | address}}</a>
+                <span class="text-muted">&bull;</span>
+              </span>
+              <span data-ng-if="$last">
+                <a href="/address/{{v.address}}">{{v | address}}</a>
+              </span>
+            </span>
+        </div>
+      </div>
+    </div>
+    <div class="delegate" data-ng-if="address.voters">
+      <h2>Voters <small>{{address.voters.length}}</small></h2>
+      <div class="row">
+        <div class="col-md-12">
+            <span data-ng-repeat='v in address.voters'>
+              <span data-ng-if="!$last">
+                <a href="/address/{{v.address}}">{{v | address}}</a>
+                <span class="text-muted">&bull;</span>
+              </span>
+              <span data-ng-if="$last">
+                <a href="/address/{{v.address}}">{{v | address}}</a>
+              </span>
+            </span>
         </div>
       </div>
     </div>
