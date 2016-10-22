@@ -103,6 +103,11 @@ angular.module('lisk_explorer')
           return (tx.senderUsername || (tx.knownSender && tx.knownSender.owner) || tx.senderId);
       };
   })
+  .filter('address', function () {
+      return function (a) {
+          return (a.username || (a.knowledge && a.knowledge.owner) || a.address);
+      };
+  })
   .filter('txRecipient', function (txTypes) {
       return function (tx) {
           if (tx.type === 0) {
