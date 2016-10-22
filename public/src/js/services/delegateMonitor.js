@@ -34,6 +34,10 @@ var DelegateMonitor = function ($scope, forgingMonitor) {
         $scope.registrations = registrations.transactions;
     };
 
+    this.updateNextForgers = function (nextForgers) {
+        $scope.nextForgers = nextForgers.delegates;
+    };
+
     this.updateVotes = function (votes) {
         $scope.votes = votes.transactions;
     };
@@ -104,6 +108,7 @@ angular.module('lisk_explorer.tools').factory('delegateMonitor',
               }
               if (res.lastBlock) { delegateMonitor.updateLastBlock(res.lastBlock); }
               if (res.registrations) { delegateMonitor.updateRegistrations(res.registrations); }
+              if (res.nextForgers) { delegateMonitor.updateNextForgers(res.nextForgers); }
               if (res.votes) { delegateMonitor.updateVotes(res.votes); }
           });
 

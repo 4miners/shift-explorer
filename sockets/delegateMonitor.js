@@ -16,7 +16,8 @@ module.exports = function (app, connectionHandler, socket) {
         'getLastBlock'     : false,
         'getRegistrations' : false,
         'getVotes'         : false,
-        'getLastBlocks'    : false
+        'getLastBlocks'    : false,
+        'getNextForgers'   : false
     };
 
     this.onInit = function () {
@@ -26,7 +27,8 @@ module.exports = function (app, connectionHandler, socket) {
             getActive,
             getLastBlock,
             getRegistrations,
-            getVotes
+            getVotes,
+            getNextForgers
         ],
         function (err, res) {
             if (err) {
@@ -36,6 +38,7 @@ module.exports = function (app, connectionHandler, socket) {
                 data.lastBlock     = res[1];
                 data.registrations = res[2];
                 data.votes         = res[3];
+                data.nextForgers   = res[4];
 
                 log('Emitting new data');
                 socket.emit('data', data);
@@ -130,6 +133,17 @@ module.exports = function (app, connectionHandler, socket) {
         );
     };
 
+    var getNextForgers = function (cb) {
+        if (running.getNextForgers) {
+            return cb('getNextForgers (already running)');
+        }
+        running.getNextForgers = true;
+        delegates.getNextForgers(
+            function (res) { running.getNextForgers = false; cb('NextForgers'); },
+            function (res) { running.getNextForgers = false; cb(null, res); }
+        );
+    };
+
     var getLastBlocks = function (results) {
         if (running.getLastBlocks) {
             return log('getLastBlocks (already running)');
@@ -189,7 +203,8 @@ module.exports = function (app, connectionHandler, socket) {
             getActive,
             getLastBlock,
             getRegistrations,
-            getVotes
+            getVotes,
+            getNextForgers
         ],
         function (err, res) {
             if (err) {
@@ -199,6 +214,7 @@ module.exports = function (app, connectionHandler, socket) {
                 thisData.lastBlock     = res[1];
                 thisData.registrations = res[2];
                 thisData.votes         = res[3];
+                thisData.nextForgers   = res[4];
 
                 data = thisData;
                 log('Emitting data');

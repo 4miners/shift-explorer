@@ -49,4 +49,10 @@ module.exports = function (app) {
             function (data) { req.json = data; return next(); }
         );
     });
+    app.get('/api/delegates/getNextForgers', function (req, res, next) {
+        api.getNextForgers(
+            function (data) { res.json(data); },
+            function (data) { req.json = data; return next(); }
+        );
+    });
 };
