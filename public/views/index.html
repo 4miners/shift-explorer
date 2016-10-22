@@ -25,9 +25,9 @@
           <tr data-ng-repeat='tx in txs track by $index'>
             <td><a class="ellipsis" href="/tx/{{tx.id}}">{{tx.id}}</a></td>
             <td class="text-right hidden-xs"><span class="ellipsis">{{tx.timestamp | timestamp}}<span></td>
-            <td class="text-right hidden-xs"><a class="ellipsis" href="/address/{{tx.senderId}}">{{tx | txSender}}</a></td>
+            <td class="text-right hidden-xs"><a class="ellipsis" href="/address/{{tx.senderId}}">{{tx.senderDelegate.username || (tx | txSender)}}</a></td>
             <td class="text-right hidden-xs">
-              <a class="ellipsis" data-ng-show="tx.type == 0" href="/address/{{tx.recipientId}}">{{tx | txRecipient}}</a>
+              <a class="ellipsis" data-ng-show="tx.type == 0" href="/address/{{tx.recipientId}}">{{tx.recipientDelegate.username || (tx | txRecipient)}}</a>
               <span class="ellipsis" data-ng-show="tx.type >= 1">{{tx | txRecipient}}</span>
             </td>
             <td class="text-right"><span class="ellipsis">{{tx.amount | lisk}}</span></td>
