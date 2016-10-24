@@ -2,15 +2,40 @@
 
 var express = require('express'),
     config = require('./config.json').configuration,
-    client = require('./redis')(config),
     development = config.development,
     production = config.production,
     routes = require('./api'),
     path = require('path'),
     cache = require('./cache'),
-    async = require('async');
+    program = require('commander'),
+    async = require('async'),
+    packageJson = require('./package.json');
 
 var app = express(), utils = require('./utils');
+
+program
+    .version(packageJson.version)
+    .option('-c, --config <path>', 'config file path')
+    .option('-p, --port <port>', 'listening port number')
+    .option('-a, --address <ip>', 'listening host name or ip')
+    .option('-rp, --redisPort <port>', 'redis port')
+    .option('-wa, --walletAddress <link>', 'address to wallet service')
+    .parse(process.argv);
+
+if (program.config) {
+    config = require(path.resolve(process.cwd(), program.config));
+    development = config.development;
+    production = config.production;
+}
+
+if (program.redisPort) {
+    config.redis.port = program.redisPort;
+}
+var client = require('./redis')(config);
+
+if (program.walletAddress) {
+    config.walletAddress = program.walletAddress;
+}
 
 app.candles = new utils.candles(config, client);
 app.exchange = new utils.exchange(config);
@@ -62,6 +87,13 @@ if (process.env.NODE_ENV === 'production') {
 } else {
     app.set('host', development.host);
     app.set('port', development.port);
+}
+
+if (program.address) {
+    app.set ('host', program.address);
+}
+if (program.port) {
+    app.set ('port', program.port);
 }
 
 app.use(function (req, res, next) {
