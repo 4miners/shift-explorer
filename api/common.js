@@ -8,6 +8,11 @@ module.exports = function (app) {
         return res.json(data);
     });
 
+    app.get('/api/wallet', function (req, res) {
+        var data = common.getWalletAddress();
+        return res.json(data);
+    });
+
     app.get('/api/getPriceTicker', function (req, res, next) {
         common.getPriceTicker(
             function (data) { res.json(data); },

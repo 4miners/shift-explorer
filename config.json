@@ -21,6 +21,7 @@
             "port" : 6379,
             "password" : ""
         },
+        "walletAddress" : "https://wallet.shift.4miners.net",
         "cacheTTL" : 20,
         "fixedPoint" : 100000000,
         "enableCandles" : true,

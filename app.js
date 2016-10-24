@@ -25,6 +25,7 @@ app.set('fixed point', config.fixedPoint);
 app.set('exchange enabled', config.enableExchange);
 app.set('candles enabled', config.enableCandles);
 app.set('orders enabled', config.enableOrders);
+app.set('wallet address', config.walletAddress);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
