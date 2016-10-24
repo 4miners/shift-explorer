@@ -1,6 +1,6 @@
 # SHIFT Blockchain Explorer
 
-Lisk blockchain explorer version 0.3. Works with Lisk wallet API. Uses Redis for caching data and Freegeoip for IP geo-location.
+SHIFT blockchain explorer version 0.3.3 Works with SHIFT wallet API. Uses Redis for caching data and Freegeoip for IP geo-location.
 
 ## Prerequisites
 
@@ -75,7 +75,7 @@ Example:
 ```
 
 * `cacheTTL` - time to live cache in redis.
-* `fixedPoint` - fixed point number of Lisk (10^8).
+* `fixedPoint` - fixed point number of SHIFT (10^8).
 * `enableCandles` - enable or disable updating of candlestick data.
 * `updateCandlesInterval` - time to update candlestick data.
 * `enableOrders` - enable or disable updating of order book data.
@@ -147,7 +147,7 @@ Ports for both mode can be found in `config.json`
 
 ## Top Accounts
 
-To enable Top Accounts functionality, start your lisk node _(not the explorer)_ using the following command:
+To enable Top Accounts functionality, start your SHIFT node _(not the explorer)_ using the following command:
 
 ```
 TOP=true node app.js
@@ -157,7 +157,7 @@ TOP=true node app.js
 
 The MIT License (MIT)
 
-Copyright (c) 2016 4miners.net<br>
+Copyright (c) 2016 4miners.net
 Copyright (c) 2016 Lisk  
 Copyright (c) 2015 Crypti
 

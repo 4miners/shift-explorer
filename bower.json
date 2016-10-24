@@ -1,6 +1,6 @@
 {
-  "name": "lisk-explorer",
-  "version": "0.3.0",
+  "name": "shift-explorer",
+  "version": "0.3.3",
   "dependencies": {
     "angular": "~1.5.8",
     "angular-animate": "~1.5.8",
