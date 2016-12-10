@@ -37,11 +37,11 @@ h1>small {
 }
 
 a, a:visited, a:focus {
-  color: #E70B3A;
+  color: #2E5670;
 }
 
 a:hover {
-  color: #e70b3a;
+  color: #2E5670;
 }
 
 /* Bootstrap fix for ui.bootstrap */
@@ -53,14 +53,14 @@ a:hover {
 
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
   color: white;
-  background-color: #e70b3a;
+  background-color: #2E5670;
 }
 
 /* Styling for the ngProgress itself */
 #ngProgress {
-  background-color: #E70B3A !important;
+  background-color: #2E5670 !important;
   box-shadow: none !important;
-  color: #E70B3A !important;
+  color: #2E5670 !important;
   height: 3px !important;
   margin: 0;
   opacity: 0;
@@ -194,7 +194,7 @@ a:hover {
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {background-color: #000000;}
 
 .navbar-default {
-  background-color: #000000;
+  background-color: #152836;
   margin: 0;
   border: 0;
 }
@@ -210,24 +210,24 @@ a:hover {
 }
 
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus {
-  background-color: #E70B3A;
+  background-color: #2E5670;
   color: white;
 }
 
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>.active>a:hover {
-  background-color: #E70B3A;
+  background-color: #2E5670;
   color: white;
 }
 
 .navbar-default .navbar-nav>li>a:focus {
-  background-color: #E70B3A;
+  background-color: #2E5670;
   color: white;
 }
 
 .navbar-default .navbar-nav>.open>a,
 .navbar-default .navbar-nav>.open>a:hover,
 .navbar-default .navbar-nav>.open>a:focus {
-  background-color: #E70B3A;
+  background-color: #2E5670;
   color: white;
 }
 
@@ -242,11 +242,11 @@ a:hover {
     margin-bottom: 1px;
   }
   .navbar-default .navbar-nav .open .dropdown-menu>li>a {
-    background-color: #e70b3a;
+    background-color: #2E5670;
     color: white;
   }
   .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
-    background-color: #e70b3a;
+    background-color: #2E5670;
     color: white;
   }
 }
@@ -256,7 +256,7 @@ a:hover {
 }
 
 .navbar-form {
-  margin-top: 20px;
+  margin-top: 23px;
 }
 
 @media (max-width: 1200px) {
@@ -281,12 +281,12 @@ a:hover {
 .nav-tabs.nav-justified>.active>a,
 .nav-tabs.nav-justified>.active>a:focus {
   color: white;
-  background-color: #E70B3A;
+  background-color: #2E5670;
 }
 
 .nav-tabs.nav-justified>.active>a:hover {
   color: white;
-  background-color: #E70B3A;
+  background-color: #2E5670;
 }
 
 .nav-tabs.nav-justified>li>a:hover {
@@ -305,20 +305,14 @@ a:hover {
 }
 
 .navbar-brand .logo {
-  background-image: url(/img/logo.png);
-  background-size: 80px 80px;
   height: 80px;
   width: 80px;
+  padding: 5px;
 }
 
-@media only screen and (-Webkit-min-device-pixel-ratio: 1.5),
-       only screen and (-moz-min-device-pixel-ratio: 1.5),
-       only screen and (-o-min-device-pixel-ratio: 3/2),
-       only screen and (min-device-pixel-ratio: 1.5) {
-  .navbar-brand .logo {
-    background-image: url(/img/logo2x.png);
-    background-size: 100%;
-  }
+.navbar-brand .logo img {
+  height: 100%;
+  width: 100%;
 }
 
 .navbar-form .form-control {
@@ -345,7 +339,7 @@ a:hover {
 
 #search.loading {
   color: white;
-  background-color: #E70B3A;
+  background-color: #2E5670;
   -webkit-animation-name: loading;
   -webkit-animation-duration: 2s;
   -webkit-animation-iteration-count: infinite;
@@ -355,12 +349,12 @@ a:hover {
 }
 
 @-webkit-keyframes loading {
-  from { background-color: #E70B3A; }
+  from { background-color: #2E5670; }
   to { background-color: #38B449; }
 }
 
 @keyframes loading {
-    from { background-color: #E70B3A; }
+    from { background-color: #2E5670; }
     to { background-color: #38B449; }
 }
 
@@ -383,10 +377,10 @@ a:hover {
   float: left;
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
-  background-color: #e70b3a;
+  background-color: #2E5670;
   border-radius: 3px;
   margin-left: 10px;
-  margin-top: 10px;
+  margin-top: 12px;
   min-width: 389.375px;
   min-height: 29px;
   padding: 2px 0px;
@@ -503,29 +497,29 @@ a:hover {
 
 .btn-primary, a.btn-primary {
   color: #fff;
-  background-color: #E70B3A;
-  border-color: #E70B3A;
+  background-color: #2E5670;
+  border-color: #2E5670;
 }
 
 .btn-primary:focus,
 .btn-primary.focus {
   color: #fff;
-  background-color: #E70B3A;
-  border-color: #E70B3A;
+  background-color: #2E5670;
+  border-color: #2E5670;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #E70B3A;
-  border-color: #E70B3A;
+  background-color: #2E5670;
+  border-color: #2E5670;
 }
 
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #fff;
-  background-color: #E70B3A;
-  border-color: #E70B3A;
+  background-color: #2E5670;
+  border-color: #2E5670;
 }
 
 .btn-primary:active:hover,
@@ -538,8 +532,8 @@ a:hover {
 .btn-primary.active.focus,
 .open > .dropdown-toggle.btn-primary.focus {
   color: #fff;
-  background-color: #E70B3A;
-  border-color: #E70B3A;
+  background-color: #2E5670;
+  border-color: #2E5670;
 }
 
 .btn-primary:active,
@@ -557,12 +551,12 @@ a:hover {
 .btn-primary.disabled.focus,
 .btn-primary[disabled].focus,
  fieldset[disabled] .btn-primary.focus {
-  background-color: #E70B3A;
-  border-color: #E70B3A;
+  background-color: #2E5670;
+  border-color: #2E5670;
 }
 
 .btn-primary .badge {
-  color: #E70B3A;
+  color: #2E5670;
   background-color: #fff;
 }
 
@@ -591,7 +585,7 @@ a:hover {
 }
 
 .txvalues-primary {
-  background-color: #E70B3A;
+  background-color: #2E5670;
 }
 
 .txvalues-default {
@@ -615,12 +609,12 @@ a:hover {
 }
 
 .progress-bar-loading {
-  background-color: #E70B3A;
+  background-color: #2E5670;
 }
 
 /* Set the fixed height of the footer here */
 #footer {
-  background-color: #000000;
+  background-color: #152836;
   color: white;
   height: 48px;
   overflow: hidden;
@@ -654,7 +648,7 @@ a:hover {
 }
 
 #footer a:hover {
-  color: #e70b3a;
+  color: #2E5670;
 }
 
 .line-footer { border-top: 2px dashed #ccc; }
@@ -707,7 +701,7 @@ a:hover {
   -webkit-border-bottom-left-radius: 2px;
   -webkit-border-bottom-right-radius: 2px;
   color: white;
-  background-color: #E70B3A;
+  background-color: #2E5670;
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
   border-top: none;
@@ -818,11 +812,11 @@ a:hover {
 
 .tooltip .tooltip-inner {
   color: white;
-  background-color: #E70B3A;
+  background-color: #2E5670;
 }
 
 .tooltip.right .tooltip-arrow {
-  border-right-color: #E70B3A;
+  border-right-color: #2E5670;
 }
 
 .btn-copy.zeroclipboard-is-hover {
@@ -1023,7 +1017,7 @@ a.sort-order:focus, .sort-order:hover {
 }
 
 a.sort-order span {
-  color: #E70B3A;
+  color: #2E5670;
 }
 
 a.sort-order span:after {
