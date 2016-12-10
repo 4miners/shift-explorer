@@ -12,14 +12,16 @@
     <div class="collapse navbar-collapse" collapse="$root.isCollapsed">
       <form id="search-form" data-ng-controller="SearchController" class="navbar-form navbar-left hidden-xs" role="search" data-ng-submit="search()">
         <div class="form-group" data-ng-class="{'has-error': badQuery}">
-          <input id="search" type="text" class="form-control" data-ng-model="q" data-ng-class="{'loading': loading}" placeholder="Search for block, transaction or address" data-ng-submit="search()">
+          <input id="search" type="text" class="form-control" data-ng-model="q" data-ng-class="{'loading': loading}" placeholder="Find a block, transaction, address or delegate" data-ng-submit="search()">
         </div>
         <div class="no_matching text-danger" data-ng-if="badQuery">No matching records found!</div>
       </form>
       <div class="status" data-ng-show="blockStatus">
         <span class="height"><strong>Height: </strong> {{blockStatus.height}}</span>
         <span class="supply">&middot; <strong>Supply: </strong> {{blockStatus.supply | lisk | number:0}}</span>
-        <span class="lisk-btc">&middot; <strong>SHIFT/BTC: </strong> {{lisk_btc}}</span>
+        <span class="lisk-nethash">&middot; <strong>Nethash: </strong> {{blockStatus.nethash | nethash}}</span>
+	<p>
+        <span class="lisk-btc"><strong>SHIFT/BTC: </strong> {{lisk_btc}}</span>
         <span class="lisk-usd">&middot; <strong>SHIFT/USD: </strong> {{lisk_usd}}</span>
       </div>
       <ul class="nav navbar-nav navbar-right">

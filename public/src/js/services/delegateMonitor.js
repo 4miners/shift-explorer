@@ -35,14 +35,22 @@ var DelegateMonitor = function ($scope, forgingMonitor) {
     };
 
     this.updateNextForgers = function (nextForgers) {
-        $scope.nextForgers = nextForgers.delegates;
+        $scope.nextForgers = nextForgers;
     };
 
     this.updateVotes = function (votes) {
         $scope.votes = votes.transactions;
     };
 
+    this.updateApproval = function (approval) {
+        $scope.approval = approval;
+    };
+
     this.updateLastBlocks = function (delegate) {
+        _.each($scope.activeDelegates, function (d) {
+            d.forgingStatus = forgingMonitor.getStatus(d);
+        });
+
         var existing = _.find($scope.activeDelegates, function (d) {
             return d.publicKey === delegate.publicKey;
         });
@@ -50,9 +58,9 @@ var DelegateMonitor = function ($scope, forgingMonitor) {
             existing.blocksAt = delegate.blocksAt;
             existing.blocks = delegate.blocks;
             existing.forgingStatus = forgingMonitor.getStatus(delegate);
-            updateForgingTotals($scope.activeDelegates);
-            updateForgingProgress($scope.forgingTotals);
         }
+        updateForgingTotals($scope.activeDelegates);
+        updateForgingProgress($scope.forgingTotals);
     };
 
     // Private
@@ -110,6 +118,7 @@ angular.module('lisk_explorer.tools').factory('delegateMonitor',
               if (res.registrations) { delegateMonitor.updateRegistrations(res.registrations); }
               if (res.nextForgers) { delegateMonitor.updateNextForgers(res.nextForgers); }
               if (res.votes) { delegateMonitor.updateVotes(res.votes); }
+              if (res.approval) { delegateMonitor.updateApproval(res.approval); }
           });
 
           ns.on('delegate', function (res) {
