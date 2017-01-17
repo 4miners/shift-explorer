@@ -41,7 +41,9 @@ a, a:visited, a:focus {
 }
 
 a:hover {
-  color: #2E5670;
+  color: #93449A;
+  text-decoration: none;
+  transition: color 0.3s ease 0s;
 }
 
 /* Bootstrap fix for ui.bootstrap */
@@ -249,6 +251,9 @@ a:hover {
     background-color: #2E5670;
     color: white;
   }
+  .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse, .pre-scrollable {
+    max-height: none;
+  }
 }
 
 .navbar-form .form-group {
@@ -333,7 +338,10 @@ a:hover {
 
 #search-form { color: #5f696e; }
 
-#search-form #search { width: 275px; }
+#search-form #search { 
+  width: 275px;
+  line-height: normal;
+}
 
 #search { font-family: 'Roboto', 'Ubuntu', sans-serif; }
 
@@ -383,7 +391,6 @@ a:hover {
   margin-top: 12px;
   min-width: 389.375px;
   min-height: 29px;
-  padding: 2px 0px;
   font-size: 12px;
   color: #eee;
   text-align: center;
@@ -636,7 +643,7 @@ a:hover {
 }
 
 #footer .col-right a {
-  color: #555;
+  color: #2E5670;
   margin-left: 10px;
 }
 
@@ -648,7 +655,7 @@ a:hover {
 }
 
 #footer a:hover {
-  color: #2E5670;
+  color: white;
 }
 
 .line-footer { border-top: 2px dashed #ccc; }
@@ -712,6 +719,16 @@ a:hover {
   top: 55px;
   width: 275px;
   z-index: 9999;
+}
+
+/*Pubkey mobile display*/
+
+.pk-mobile-display {
+    display: inline;
+    white-space:normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    width: 100%;
 }
 
 /* Animations */
@@ -1039,3 +1056,7 @@ a.sort-order span.reverse:after {
     margin-bottom: 20px;
 }
 
+.proposal-icon {
+    vertical-align: middle;
+    margin-top: -5px;
+}

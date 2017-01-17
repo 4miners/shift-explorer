@@ -1,14 +1,12 @@
 'use strict';
 
 var express = require('express'),
-    config = require('./config.json').configuration,
-    development = config.development,
-    production = config.production,
-    routes = require('./api'),
-    path = require('path'),
-    cache = require('./cache'),
+    config  = require('./config'),
+    routes  = require('./api'),
+    path    = require('path'),
+    cache   = require('./cache'),
     program = require('commander'),
-    async = require('async'),
+    async   = require('async'),
     packageJson = require('./package.json');
 
 var app = express(), utils = require('./utils');
@@ -17,16 +15,16 @@ program
     .version(packageJson.version)
     .option('-c, --config <path>', 'config file path')
     .option('-p, --port <port>', 'listening port number')
-    .option('-a, --address <ip>', 'listening host name or ip')
+    .option('-h, --host <ip>', 'listening host name or ip')
     .option('-rp, --redisPort <port>', 'redis port')
     .option('-wa, --walletAddress <link>', 'address to wallet service')
     .parse(process.argv);
 
 if (program.config) {
     config = require(path.resolve(process.cwd(), program.config));
-    development = config.development;
-    production = config.production;
 }
+app.set ('host', program.host || config.host);
+app.set ('port', program.port || config.port);
 
 if (program.redisPort) {
     config.redis.port = program.redisPort;
@@ -46,11 +44,17 @@ app.set('version', '0.3');
 app.set('strict routing', true);
 app.set('lisk address', 'http://' + config.lisk.host + ':' + config.lisk.port);
 app.set('freegeoip address', 'http://' + config.freegeoip.host + ':' + config.freegeoip.port);
-app.set('fixed point', config.fixedPoint);
-app.set('exchange enabled', config.enableExchange);
-app.set('candles enabled', config.enableCandles);
-app.set('orders enabled', config.enableOrders);
 app.set('wallet address', config.walletAddress);
+app.set('exchange enabled', config.exchangeRates.enabled);
+
+app.use (function (req, res, next) {
+    res.setHeader ('X-Frame-Options', 'DENY');
+    res.setHeader ('X-Content-Type-Options', 'nosniff');
+    res.setHeader ('X-XSS-Protection', '1; mode=block');
+    var ws_src = 'ws://' + req.get('host') + ' wss://' + req.get('host');
+    res.setHeader ('Content-Security-Policy', 'frame-ancestors \'none\'; default-src \'self\'; connect-src \'self\' ' + ws_src + '; img-src \'self\' https://*.tile.openstreetmap.org; style-src \'self\' \'unsafe-inline\' https://fonts.googleapis.com; font-src \'self\' https://fonts.gstatic.com');
+    return next();
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -80,21 +84,6 @@ var allowCrossDomain = function(req, res, next) {
     next();
 };
 app.use(allowCrossDomain);
-
-if (process.env.NODE_ENV === 'production') {
-    app.set('host', production.host);
-    app.set('port', production.port);
-} else {
-    app.set('host', development.host);
-    app.set('port', development.port);
-}
-
-if (program.address) {
-    app.set ('host', program.address);
-}
-if (program.port) {
-    app.set ('port', program.port);
-}
 
 app.use(function (req, res, next) {
     if (req.originalUrl.split('/')[1] !== 'api') {
@@ -176,8 +165,7 @@ app.get('*', function (req, res, next) {
 });
 
 async.parallel([
-    function (cb) { app.exchange.loadBTCUSD(cb); },
-    function (cb) { app.exchange.loadLISKBTC(cb); }
+    function (cb) { app.exchange.loadRates (); cb (null); },
 ], function (err) {
     var server = app.listen(app.get('port'), app.get('host'), function (err) {
         if (err) {

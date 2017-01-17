@@ -1,6 +1,6 @@
 'use strict';
 
-var config = require('../config.json').configuration,
+var config = require('../config'),
     client = require('../redis')(config),
     candles = require('../lib/candles'),
     async = require('async');
@@ -21,6 +21,17 @@ module.exports = function (grunt) {
 //                         callback(null, res);
 //                     }
 //                 });
+
+                bittrex.buildCandles(function (err, res) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, res);
+                    }
+                });
+            },
+            function (callback) {
+                var bittrex = new candles.bittrex(client);
 
                 bittrex.buildCandles(function (err, res) {
                     if (err) {
@@ -56,6 +67,17 @@ module.exports = function (grunt) {
 //                         callback(null, res);
 //                     }
 //                 });
+
+                bittrex.updateCandles(function (err, res) {
+                    if (err) {
+                        callback(err);
+                    } else {
+                        callback(null, res);
+                    }
+                });
+            },
+            function (callback) {
+                var bittrex = new candles.bittrex(client);
 
                 bittrex.updateCandles(function (err, res) {
                     if (err) {

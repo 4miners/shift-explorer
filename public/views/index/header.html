@@ -20,24 +20,37 @@
         <span class="height"><strong>Height: </strong> {{blockStatus.height}}</span>
         <span class="supply">&middot; <strong>Supply: </strong> {{blockStatus.supply | lisk | number:0}}</span>
         <span class="lisk-nethash">&middot; <strong>Nethash: </strong> {{blockStatus.nethash | nethash}}</span>
-	<p>
-        <span class="lisk-btc"><strong>SHIFT/BTC: </strong> {{lisk_btc}}</span>
-        <span class="lisk-usd">&middot; <strong>SHIFT/USD: </strong> {{lisk_usd}}</span>
+  <p>
+        <span class="lisk-btc"><strong>SHIFT/BTC: </strong> {{currency.tickers.SHIFT.BTC || 'N/A'}}</span>
+        <span class="lisk-usd">&middot; <strong>SHIFT/{{currency.tickers.SHIFT[currency.symbol] && currency.symbol !== 'BTC' ? currency.symbol : 'USD'}}: </strong> {{currency.tickers.SHIFT[currency.symbol] && currency.symbol !== 'BTC' ? (currency.tickers.SHIFT[currency.symbol] | number:4) : (currency.tickers.SHIFT.USD | number:4) || 'N/A'}}</span>
       </div>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="/topAccounts">Top Accounts</a>
-        </li>
+      <li class="dropdown" dropdown data-ng-controller="CurrencyController">
+        <a class="dropdown-toggle" dropdown-toggle href="#">
+          {{currency.symbol}} <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li>
+          <a data-ng-click="setCurrency('SHIFT')" data-ng-class="{active: currency.symbol == 'SHIFT'}">SHIFT</a>
+          </li>
+          <li data-ng-if="currency.tickers.SHIFT" data-ng-repeat="(key, value) in currency.tickers.SHIFT">
+          <a data-ng-click="setCurrency(key)" data-ng-class="{active: currency.symbol == {{key}}}">{{key}}</a>
+          </li>
+        </ul>
+      </li>
         <li class="dropdown" dropdown>
           <a href class="dropdown-toggle" dropdown-toggle role="button" aria-expanded="false">Tools <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
+            <li>
+              <a href="/topAccounts">Top Accounts</a>
+            </li>
             <li>
               <a href="/activityGraph">Activity Graph</a>
             </li>
             <li>
               <a href="/delegateMonitor">Delegate Monitor</a>
             </li>
-            <li>
+            <li data-ng-if="marketWatcher">
               <a href="/marketWatcher">Market Watcher</a>
             </li>
             <li>

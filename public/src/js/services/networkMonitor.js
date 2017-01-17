@@ -160,7 +160,7 @@ var NetworkMap = function () {
 
     L.Icon.Default.imagePath = '/img/leaflet';
 
-    L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
