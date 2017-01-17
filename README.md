@@ -6,7 +6,7 @@ SHIFT Explorer version 1.1.1 works in conjunction with the SHIFT Core API. It us
 
 ## Prerequisites
 
-These programs and resources are required to install and run Lisk Explorer
+These programs and resources are required to install and run SHIFT Explorer
 
 - Nodejs v6.0.0 or higher (<https://nodejs.org/>) -- Nodejs serves as the underlying engine for code execution.
 
@@ -36,11 +36,11 @@ These programs and resources are required to install and run Lisk Explorer
 
   `sudo npm install -g grunt`
 
-- Forever (<https://github.com/foreverjs/forever>) -- Forever manages the node processes for Lisk Explorer
+- Forever (<https://github.com/foreverjs/forever>) -- Forever manages the node processes for SHIFT Explorer
 
   `sudo npm install -g forever`
 
-- Git (<https://github.com/git/git>) -- Used for cloning and updating Lisk Explorer
+- Git (<https://github.com/git/git>) -- Used for cloning and updating SHIFT Explorer
 
   `sudo apt-get install -y git`
 
@@ -50,11 +50,11 @@ These programs and resources are required to install and run Lisk Explorer
 
 ## Installation Steps
 
-Clone the Lisk Explorer Repository:
+Clone the SHIFT Explorer Repository:
 
 ```
-git clone https://github.com/LiskHQ/lisk-explorer.git
-cd lisk-explorer
+git clone https://github.com/4miners/shift-explorer.git
+cd shift-explorer
 npm install
 bower install
 ```
@@ -62,12 +62,12 @@ bower install
 ## Build Steps
 
 #### Frontend
- The frontend must be built with Grunt before starting Lisk Explorer. Run the following command to compile the frontend components:
+ The frontend must be built with Grunt before starting SHIFT Explorer. Run the following command to compile the frontend components:
 
 `grunt compile`
 
 #### Market Watcher
- Candlestick data needs to be initialized prior to starting Lisk Explorer. During runtime candlestick data is updated automatically.
+ Candlestick data needs to be initialized prior to starting SHIFT Explorer. During runtime candlestick data is updated automatically.
 
 To build candlestick data for each exchange run:
 
@@ -79,11 +79,11 @@ To update candlestick data manually run after initialization:
 
 ## Configuration
 
-The default `config.js` file contains all of the configuration settings for Lisk Explorer. These options can be modified according to comments included in configuration file.
+The default `config.js` file contains all of the configuration settings for SHIFT Explorer. These options can be modified according to comments included in configuration file.
 
 #### Top Accounts
 
-To enable Top Accounts functionality, edit your Lisk Client config.json _(not the explorer)_:
+To enable Top Accounts functionality, edit your SHIFT Client config.json _(not the explorer)_:
 
 ```
 {
@@ -92,20 +92,22 @@ To enable Top Accounts functionality, edit your Lisk Client config.json _(not th
     "version": "0.5.0",
     "minVersion": "~0.5.0",
     "fileLogLevel": "info",
-    "logFileName": "logs/lisk.log",
+    "logFileName": "logs/shift.log",
     "consoleLogLevel": "info",
     "trustProxy": false,
     "topAccounts": false, <--- This line needs to be changed to read true
 ```
 
-After the change is made the Lisk Client will need to be restarted. (Example):
->>>>>>> upstream/postgres
+After the change is made the SHIFT Client will need to be restarted. (Example):
 
-`bash /PATH_TO_LISK_DIR/lisk.sh reload`
+```
+bash /PATH_TO_SHIFT_DIR/shift_manager.bash stop
+bash /PATH_TO_SHIFT_DIR/shift_manager.bash start
+```
 
-## Managing Lisk Explorer
+## Managing SHIFT Explorer
 
-To test that Lisk Explorer is configured correctly, run the following command:
+To test that SHIFT Explorer is configured correctly, run the following command:
 
 `node app.js`
 
@@ -125,21 +127,24 @@ To stop Explorer after it has been started with `forever`, issue the following c
 
 ## Tests
 
-Before running any tests, please ensure Lisk Explorer and Lisk Client are configured to run on the Lisk Testnet.
+Before running any tests, please ensure SHIFT Explorer and SHIFT Client are configured to run on the SHIFT Testnet.
 
 Replace **config.js** with **config.test** file from the **test** directory:
 
 `cp test/config.test ./config.js`
 
-Replace the **config.json** for the Lisk Client the corresponding file under the **test** directory:
+Replace the **config.json** for the SHIFT Client the corresponding file under the **test** directory:
 
-`cp test/config_lisk.json  /PATH_TO_LISK_DIR/config.json`
+`cp test/config_lisk.json  /PATH_TO_SHIFT_DIR/config.json`
 
-Then restart the Lisk Client (example):
+Then restart the SHIFT Client (example):
 
-`bash /PATH_TO_LISK_DIR/lisk.sh reload`
+```
+bash /PATH_TO_SHIFT_DIR/shift_manager.bash stop
+bash /PATH_TO_SHIFT_DIR/shift_manager.bash start
+```
 
-Launch Lisk Explorer (runs on port 6040):
+Launch SHIFT Explorer (runs on port 6040):
 
 `forever start app.js`
 
